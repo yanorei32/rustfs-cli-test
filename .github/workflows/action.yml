@@ -25,7 +25,7 @@ jobs:
           wget "https://github.com/rustfs/cli/releases/download/$RUSTFS_CLI_URL_VERSION/$RUSTFS_CLI_TAR_NAME"
           tar xf "$RUSTFS_CLI_TAR_NAME"
           rm "$RUSTFS_CLI_TAR_NAME"
-          mv rc /bin/
+          sudo mv rc /bin/
 
           rc alias set yr32srv https://rustfs-s3.yr32.net test-bucket-ci 1ILlPqzTsf76J5Qw3Wd8hvpKUGVBr94obyRMDiaN
           rc cp yr32srv/test-bucket/VRChat_2026-04-03_14-33-44.927_3840x2160.png ./
