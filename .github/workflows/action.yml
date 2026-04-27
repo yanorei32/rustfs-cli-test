@@ -1,0 +1,33 @@
+name: Action
+
+on:
+  push:
+
+jobs:
+  action:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ghimage: ubuntu-24.04
+            rustfscliarch: amd64
+
+          - ghimage: ubuntu-24.04-arm
+            rustfscliarch: arm64
+
+    runs-on: ${{ matrix.ghimage }}
+
+    steps:
+      - run: |
+          # depName=rustfs/cli
+          RUSTFS_CLI_URL_VERSION="v0.1.12"
+          RUSTFS_CLI_TAR_NAME="rustfs-cli-linux-${{ matrix.rustfscliarch }}-$RUSTFS_CLI_URL_VERSION.tar.gz"
+          wget "https://github.com/rustfs/cli/releases/download/$RUSTFS_CLI_URL_VERSION/$RUSTFS_CLI_TAR_NAME"
+          tar xf "$RUSTFS_CLI_TAR_NAME"
+          rm "$RUSTFS_CLI_TAR_NAME"
+          mv rc /bin/
+
+          rc alias set yr32srv https://rustfs-s3.yr32.net test-bucket-ci 1ILlPqzTsf76J5Qw3Wd8hvpKUGVBr94obyRMDiaN
+          rc cp yr32srv/test-bucket/VRChat_2026-04-03_14-33-44.927_3840x2160.png ./
+
+          file VRChat_2026-04-03_14-33-44.927_3840x2160.png

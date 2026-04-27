@@ -1,0 +1,14 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": [".*\\.yml"],
+      "matchStrings": ["depName=(?<depName>.*?)?\\s.*?_VERSION=\"(?<currentValue>.*?)\""],
+      "versioningTemplate": "docker",
+      "datasourceTemplate": "github-releases"
+    }
+  ]
+}
