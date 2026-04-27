@@ -13,11 +13,11 @@ jobs:
           $env:RUSTFS_CLI_VERSION="v0.1.12"
           $env:RUSTFS_CLI_ZIP_NAME="rustfs-cli-windows-amd64-$env:RUSTFS_CLI_VERSION.zip"
           Invoke-WebRequest "https://github.com/rustfs/cli/releases/download/$env:RUSTFS_CLI_VERSION/$env:RUSTFS_CLI_ZIP_NAME" -OutFile "$env:RUSTFS_CLI_ZIP_NAME"
-          Expand-Archive -Path "$env:RUSTFS_CLI_ZIP_NAME" -DestinationPath .
+          Expand-Archive -Path "$env:RUSTFS_CLI_ZIP_NAME" -DestinationPath C:\Windows\
           Remove-Item -Path "$env:RUSTFS_CLI_ZIP_NAME"
 
-          .\rc alias set yr32srv https://rustfs-s3.yr32.net test-bucket-ci 1ILlPqzTsf76J5Qw3Wd8hvpKUGVBr94obyRMDiaN
-          .\rc cp yr32srv/test-bucket/VRChat_2026-04-03_14-33-44.927_3840x2160.png .
+          rc alias set yr32srv https://rustfs-s3.yr32.net test-bucket-ci 1ILlPqzTsf76J5Qw3Wd8hvpKUGVBr94obyRMDiaN
+          rc cp yr32srv/test-bucket/VRChat_2026-04-03_14-33-44.927_3840x2160.png .
 
           dir
 
